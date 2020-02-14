@@ -74,6 +74,8 @@ set_target_properties(integration_tests_runner
 )
 
 target_link_libraries(integration_tests_runner
+    asan
+    ubsan
     mavsdk
     mavsdk_telemetry
     mavsdk_action

@@ -12,6 +12,8 @@ set_target_properties(unit_tests_runner
 )
 
 target_link_libraries(unit_tests_runner
+    asan
+    ubsan
     mavsdk
     mavsdk_mission
     mavsdk_camera

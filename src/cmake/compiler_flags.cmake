@@ -22,7 +22,7 @@ else()
     if (MINGW)
         set(warnings "-Wall -Wextra -Wshadow -Wno-strict-aliasing -Wold-style-cast -Wdouble-promotion")
     else()
-        add_definitions(-fno-exceptions)
+        add_definitions(-fno-exceptions -fsanitize=address,undefined)
         set(warnings "-Wall -Wextra -Werror -Wshadow -Wno-strict-aliasing -Wold-style-cast -Wdouble-promotion -Wformat=2 -Weffc++")
     endif()
 
