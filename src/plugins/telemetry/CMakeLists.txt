@@ -8,6 +8,12 @@ target_link_libraries(mavsdk_telemetry
     mavsdk
 )
 
+if(ANDROID)
+    target_link_libraries(mavsdk_telemetry
+        log
+    )
+endif()
+
 set_target_properties(mavsdk_telemetry
     PROPERTIES COMPILE_FLAGS ${warnings}
     VERSION ${MAVSDK_VERSION_STRING}

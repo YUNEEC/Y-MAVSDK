@@ -22,6 +22,13 @@ target_link_libraries(mavsdk_mission
     JsonCpp::JsonCpp
 )
 
+if(ANDROID)
+    target_link_libraries(mavsdk_mission
+        PRIVATE
+        log
+    )
+endif()
+
 target_include_directories(mavsdk_mission PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include/mavsdk>

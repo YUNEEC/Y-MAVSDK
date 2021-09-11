@@ -7,6 +7,12 @@ target_link_libraries(mavsdk_manual_control
     mavsdk
 )
 
+if(ANDROID)
+    target_link_libraries(mavsdk_manual_control
+        log
+    )
+endif()
+
 set_target_properties(mavsdk_manual_control
     PROPERTIES COMPILE_FLAGS ${warnings}
     VERSION ${MAVSDK_VERSION_STRING}

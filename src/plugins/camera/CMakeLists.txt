@@ -13,6 +13,13 @@ target_link_libraries(mavsdk_camera
     CURL::libcurl
 )
 
+if(ANDROID)
+    target_link_libraries(mavsdk_camera
+        PRIVATE
+        log
+    )
+endif()
+
 set_target_properties(mavsdk_camera
     PROPERTIES COMPILE_FLAGS ${warnings}
     VERSION ${MAVSDK_VERSION_STRING}

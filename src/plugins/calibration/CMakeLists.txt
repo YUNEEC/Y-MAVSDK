@@ -8,6 +8,12 @@ target_link_libraries(mavsdk_calibration
     mavsdk
 )
 
+if(ANDROID)
+    target_link_libraries(mavsdk_calibration
+        log
+    )
+endif()
+
 set_target_properties(mavsdk_calibration
     PROPERTIES COMPILE_FLAGS ${warnings}
     VERSION ${MAVSDK_VERSION_STRING}

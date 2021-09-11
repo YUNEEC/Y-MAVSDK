@@ -9,6 +9,12 @@ target_link_libraries(mavsdk_ftp
     mavsdk
 )
 
+if(ANDROID)
+    target_link_libraries(mavsdk_ftp
+        log
+    )
+endif()
+
 set_target_properties(mavsdk_ftp
     PROPERTIES COMPILE_FLAGS ${warnings}
     VERSION ${MAVSDK_VERSION_STRING}

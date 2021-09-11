@@ -31,6 +31,40 @@ option(BUILD_SHARED_LIBS "Build core as shared libraries instead of static ones"
 
 set(DEPS_BUILD_PATH "${PROJECT_BINARY_DIR}/third_party" CACHE PATH "Install path for the dependencies. Ignored if SUPERBUILD=OFF.")
 set(DEPS_INSTALL_PATH "${DEPS_BUILD_PATH}/install" CACHE PATH "Install path for the dependencies. Ignored if SUPERBUILD=OFF.")
+if(ANDROID)
+## https://github.com/android-ndk/ndk/issues/890
+##
+## ONLY doesn't do anything when CMAKE_FIND_ROOT_PATH is empty. Without this,
+## CMake will wrongly search host sysroots for headers/libraries. The actual path
+## used here is fairly meaningless since CMake doesn't handle the NDK sysroot
+## layout (per-arch and per-verion subdirectories for libraries), so find_library
+## is handled separately by CMAKE_SYSTEM_LIBRARY_PATH.
+## https://github.com/android-ndk/ndk/issues/517
+#
+#list(APPEND CMAKE_FIND_ROOT_PATH "${ANDROID_NDK}")
+
+## Allow users to override these values in case they want more strict behaviors.
+## For example, they may want to prevent the NDK's libz from being picked up so
+## they can use their own.
+## https://github.com/android-ndk/ndk/issues/517
+#
+#if(NOT CMAKE_FIND_ROOT_PATH_MODE_PROGRAM)
+#  set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+#endif()
+#
+#if(NOT CMAKE_FIND_ROOT_PATH_MODE_LIBRARY)
+#  set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+#endif()
+#
+#if(NOT CMAKE_FIND_ROOT_PATH_MODE_INCLUDE)
+#  set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+#endif()
+#
+#if(NOT CMAKE_FIND_ROOT_PATH_MODE_PACKAGE)
+#  set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
+#endif()
+  list(APPEND CMAKE_FIND_ROOT_PATH "${DEPS_INSTALL_PATH}")
+endif()
 
 include(GNUInstallDirs)
 

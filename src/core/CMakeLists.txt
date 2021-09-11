@@ -1,5 +1,6 @@
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
+find_package(CURL REQUIRED)
 
 include_directories(
     SYSTEM ${PROJECT_SOURCE_DIR}/third_party/mavlink/include

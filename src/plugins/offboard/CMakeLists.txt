@@ -7,6 +7,12 @@ target_link_libraries(mavsdk_offboard
     mavsdk
 )
 
+if(ANDROID)
+    target_link_libraries(mavsdk_offboard
+        log
+    )
+endif()
+
 set_target_properties(mavsdk_offboard
     PROPERTIES COMPILE_FLAGS ${warnings}
     VERSION ${MAVSDK_VERSION_STRING}
