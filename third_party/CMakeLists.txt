@@ -7,6 +7,11 @@ include(cmake/build_target.cmake)
 list(APPEND CMAKE_PREFIX_PATH "${DEPS_INSTALL_PATH}")
 set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} PARENT_SCOPE)
 
+if(ANDROID)
+list(APPEND CMAKE_FIND_ROOT_PATH "${DEPS_INSTALL_PATH}")
+set(CMAKE_FIND_ROOT_PATH ${CMAKE_FIND_ROOT_PATH} PARENT_SCOPE)
+endif()
+
 build_target(jsoncpp)
 build_target(tinyxml2)
 

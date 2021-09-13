@@ -25,6 +25,7 @@ target_link_libraries(mavsdk_mission_raw
 
 if(ANDROID)
     target_link_libraries(mavsdk_mission_raw
+        PRIVATE
         log
     )
 endif()

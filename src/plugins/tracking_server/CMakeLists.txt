@@ -7,6 +7,12 @@ target_link_libraries(mavsdk_tracking_server
     mavsdk
 )
 
+if (ANDROID)
+target_link_libraries(mavsdk_tracking_server
+    log
+)
+endif()
+
 set_target_properties(mavsdk_tracking_server
     PROPERTIES COMPILE_FLAGS ${warnings}
     VERSION ${MAVSDK_VERSION_STRING}

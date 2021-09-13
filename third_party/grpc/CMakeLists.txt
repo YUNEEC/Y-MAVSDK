@@ -45,6 +45,14 @@ if(IOS)
         )
 endif()
 
+if(ANDROID)
+    list(APPEND CMAKE_ARGS
+        "-DCMAKE_FIND_ROOT_PATH:PATH=${CMAKE_INSTALL_PREFIX}"
+        "-DANDROID_ABI=${ANDROID_ABI}"
+        "-DANDROID_PLATFORM=${ANDROID_PLATFORM}"
+        )
+endif()
+
 message(STATUS "Preparing external project \"grpc\" with args:")
 foreach(CMAKE_ARG ${CMAKE_ARGS})
     message(STATUS "-- ${CMAKE_ARG}")

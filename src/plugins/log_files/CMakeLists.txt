@@ -13,6 +13,12 @@ if (NOT APPLE AND NOT ANDROID AND NOT MSVC)
     )
 endif()
 
+if (ANDROID)
+    target_link_libraries(mavsdk_log_files
+        log
+    )
+endif()
+
 set_target_properties(mavsdk_log_files
     PROPERTIES COMPILE_FLAGS ${warnings}
     VERSION ${MAVSDK_VERSION_STRING}

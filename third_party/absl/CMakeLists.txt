@@ -19,6 +19,13 @@ if(IOS)
         )
 endif()
 
+if(ANDROID)
+    list(APPEND CMAKE_ARGS
+        "-DANDROID_ABI=${ANDROID_ABI}"
+        "-DANDROID_PLATFORM=${ANDROID_PLATFORM}"
+        )
+endif()
+
 message(STATUS "Preparing external project \"absl\" with args:")
 foreach(CMAKE_ARG ${CMAKE_ARGS})
     message(STATUS "-- ${CMAKE_ARG}")
